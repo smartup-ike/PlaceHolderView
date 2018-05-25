@@ -87,6 +87,7 @@ public abstract class SwipeDirectionalViewBinder<T, V extends SwipePlaceHolderVi
                         }
                     case MotionEvent.ACTION_UP:
                         if (!resetDone) {
+                            boolean swiped_down = false;
                             float distSlideX = pointerCurrentPoint.x - dx;
                             float distSlideY = pointerCurrentPoint.y - dy;
 
@@ -118,6 +119,7 @@ public abstract class SwipeDirectionalViewBinder<T, V extends SwipePlaceHolderVi
                                     } else if (delX <= getSwipeOption().getSwipeVerticalThreshold()
                                             && delY > getSwipeOption().getSwipeHorizontalThreshold()) {
                                         animateSwipeRestore(v, mOriginalTopMargin, mOriginalLeftMargin, getSwipeType()); // Stratubas
+                                        swiped_down = true;
                                         //break; // Stratubas
 
                                     } else {
@@ -160,6 +162,7 @@ public abstract class SwipeDirectionalViewBinder<T, V extends SwipePlaceHolderVi
                                     } else if (delX <= getSwipeOption().getSwipeVerticalThreshold()
                                             && delY > getSwipeOption().getSwipeHorizontalThreshold()) {
                                         animateSwipeRestore(v, mOriginalTopMargin, mOriginalLeftMargin, getSwipeType()); // Stratubas
+                                        swiped_down = true;
                                         //break; // Stratubas
 
                                     } else {
@@ -191,13 +194,15 @@ public abstract class SwipeDirectionalViewBinder<T, V extends SwipePlaceHolderVi
                                     }
                                 }
 
-                                view.animate()
+                                if (!swiped_down) {
+                                    view.animate()
                                         .translationX(transX)
                                         .translationY(transY)
                                         .setInterpolator(new AccelerateInterpolator(getSwipeDecor().getSwipeAnimFactor()))
                                         .setDuration((long) (getSwipeDecor().getSwipeAnimTime() * 1.25))
                                         .setListener(getViewRemoveAnimatorListener())
                                         .start();
+                                }
                             }
                             new CountDownTimer(getSwipeDecor().getSwipeAnimTime(), getSwipeDecor().getSwipeAnimTime()) {
                                 public void onTick(long millisUntilFinished) {
