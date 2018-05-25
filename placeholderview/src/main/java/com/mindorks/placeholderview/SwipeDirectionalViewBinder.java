@@ -118,7 +118,7 @@ public abstract class SwipeDirectionalViewBinder<T, V extends SwipePlaceHolderVi
                                     } else if (delX <= getSwipeOption().getSwipeVerticalThreshold()
                                             && delY > getSwipeOption().getSwipeHorizontalThreshold()) {
                                         animateSwipeRestore(v, mOriginalTopMargin, mOriginalLeftMargin, getSwipeType()); // Stratubas
-                                        break; // Stratubas
+                                        //break; // Stratubas
 
                                     } else {
                                         bindSwipeInDirectional(SwipeDirection.RIGHT_BOTTOM);
@@ -160,7 +160,7 @@ public abstract class SwipeDirectionalViewBinder<T, V extends SwipePlaceHolderVi
                                     } else if (delX <= getSwipeOption().getSwipeVerticalThreshold()
                                             && delY > getSwipeOption().getSwipeHorizontalThreshold()) {
                                         animateSwipeRestore(v, mOriginalTopMargin, mOriginalLeftMargin, getSwipeType()); // Stratubas
-                                        break; // Stratubas
+                                        //break; // Stratubas
 
                                     } else {
                                         bindSwipeOutDirectional(SwipeDirection.LEFT_BOTTOM);
